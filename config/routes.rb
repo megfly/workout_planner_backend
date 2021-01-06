@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     namespace :v1 do 
       resources :workouts, only: [:index, :create]
 
+      get '/exercises' => 'exercises#index'
+      get '/exercises/:id' => 'exercises#show'
       end 
     end 
    
