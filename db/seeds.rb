@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-a = Workout.create(title: "Leg Workout", date: "2017-12-22", duration: "1 hour")
-b = Workout.create(title: "Elliptical Workout", date: "2017-12-24", duration: "30 mins")
-c = Workout.create(title: "Kettlebell Workout", date: "2017-12-26", duration: "20 mins")
+a = Workout.create(title: "Leg Workout", date: "2021-01-22", duration: "1 hour")
+b = Workout.create(title: "Elliptical Workout", date: "2021-01-24", duration: "30 mins")
+c = Workout.create(title: "Kettlebell Workout", date: "2021-01-26", duration: "20 mins")
 
 Exercise.create(name: "kettlebell swing", reps: 10, sets: 4, weight: 25, workout_id: c.id)
 Exercise.create(name: "squats", reps: 12, sets: 4, weight: 90, workout_id: a.id)
