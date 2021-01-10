@@ -3,6 +3,7 @@ class Api::V1::WorkoutsController < ApplicationController
     def index 
         #we dont need instance variables because we arent passing the instances to the erb/views
         workouts = Workout.all
+        # workouts = Workout.where(query_params)
         render json: WorkoutSerializer.new(workouts)
     end 
 
