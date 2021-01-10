@@ -16,6 +16,13 @@ class Api::V1::WorkoutsController < ApplicationController
         end 
     end 
 
+    def destroy 
+        workout = Workout.find(params[:id])
+        workout.destroy 
+
+        render json: WorkoutSerializer.new(workout)
+    end 
+
     private 
 #strong params- permiting these attributes to the db, to create a new instance
     def workout_params 
