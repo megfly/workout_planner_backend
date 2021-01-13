@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
       resources :exercises, only: [:index, :create, :destroy]
 
-      resources :workouts, only: [:index, :new, :create, :destroy] do 
-        resources :exercises, only: [:create, :new, :destroy]
+      resources :workouts do 
+        resources :exercises
       end 
 
       # get '/exercises' => 'exercises#index'
