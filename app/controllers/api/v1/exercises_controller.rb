@@ -6,6 +6,13 @@ class Api::V1::ExercisesController < ApplicationController
         render json: ExerciseSerializer.new(exercises)
     end 
 
+    def new 
+        params[:workout_id] && Workout.find_by_id(params[:workout_id])
+        workout = Workout.find_by_id(params[:workout_id])
+        exercise = workout.exercises.build
+        render json: ExerciseSerializer.new(exercises)
+    end 
+
     def create 
         workout = Workout.find(params[:workout_id])
         exercise = Exercise.new(exercise_params)
@@ -17,6 +24,7 @@ class Api::V1::ExercisesController < ApplicationController
     end 
 
     def destroy 
+        workout = Workout.find_by_id(params[:workout_id])
         exercise = Exercise.find(params[:id])
         exercise.destroy 
 
