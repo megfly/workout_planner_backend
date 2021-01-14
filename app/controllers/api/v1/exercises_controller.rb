@@ -13,7 +13,9 @@ class Api::V1::ExercisesController < ApplicationController
         render json: ExerciseSerializer.new(exercises)
     end 
 
-    def create 
+    def create  
+        # byebug
+        # binding.pry
         workout = Workout.find(params[:workout_id])
         exercise = Exercise.new(exercise_params)
         if exercise.save 
