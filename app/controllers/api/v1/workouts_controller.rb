@@ -3,7 +3,6 @@ class Api::V1::WorkoutsController < ApplicationController
     def index 
         #we dont need instance variables because we arent passing the instances to the erb/views
         workouts = Workout.all
-        # workouts = Workout.where(query_params)
         render json: WorkoutSerializer.new(workouts)
     end 
 
@@ -25,8 +24,17 @@ class Api::V1::WorkoutsController < ApplicationController
 
     private 
 #strong params- permiting these attributes to the db, to create a new instance
+#nested
     def workout_params 
-        params.require(:workout).permit(:title, :duration, :date)
+        params.require(:workout).permit(
+            :title, :duration, :date,
+            exercises_attributes: [
+                :name, 
+                :reps, 
+                :sets, 
+                :weight
+            ]
+        )
     end
 
 end
