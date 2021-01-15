@@ -2,8 +2,20 @@ class Api::V1::ExercisesController < ApplicationController
 
     def index 
         #we dont need instance variables because we arent passing the instances to the erb/views
-        exercises = Exercise.all
-        render json: ExerciseSerializer.new(exercises)
+byebug
+        # find the workout
+        if params[:workout_id] && Workout.find_by_id(params[:workout_id])
+
+        # filter the exercises so they display if they belong to that workout
+            exercises = workout.exercises
+            render json: ExerciseSerializer.new(exercises)
+        else
+            exercises = Exercise.all
+            render json: ExerciseSerializer.new(exercises)
+        end 
+    end 
+
+    def show 
     end 
 
     def new 
@@ -15,9 +27,12 @@ class Api::V1::ExercisesController < ApplicationController
 
     def create  
         # byebug
-        # binding.pry
+        #  binding.pry
         workout = Workout.find(params[:workout_id])
-        exercise = Exercise.new(exercise_params)
+        exercise = workout.exercises.build(exercise_params)
+        # workout.exercise.new(exercise_params)
+        
+        # exercise.workout.build 
         if exercise.save 
             render json: ExerciseSerializer.new(exercise)
         else 
