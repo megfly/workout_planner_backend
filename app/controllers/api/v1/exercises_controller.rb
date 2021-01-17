@@ -1,11 +1,8 @@
 class Api::V1::ExercisesController < ApplicationController
-    before_action :set_exercise, only: [:show, :destroy]
 
     def index 
         # find the workout and save it in a variable
         workout = Workout.find_by_id(params[:workout_id])
-# byebug
-        # filter the exercises so they display if they belong to that workout
         exercises = workout.exercises
         render json: ExerciseSerializer.new(exercises)
     end 
@@ -26,17 +23,14 @@ class Api::V1::ExercisesController < ApplicationController
     end 
 
     def destroy 
+        # byebug 
         workout = Workout.find_by_id(params[:workout_id])
+        exercise = Exercise.find_by_id(params[:id])
         exercise.destroy 
         render json: ExerciseSerializer.new(exercise)
     end 
 
     private 
-
-    def set_exercise 
-        exercise = Exercise.find(params[:id])
-        # exercise = workout.exercises.find(params[:id])
-    end 
 
     def exercise_params 
         params.require(:exercise).permit(:name, :reps, :sets, :weight, :workout_id)
