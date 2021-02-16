@@ -16,8 +16,8 @@ class Api::V1::WorkoutsController < ApplicationController
     end 
 
     def update 
-        workout = Workout.find(params[:id])
-        if workout.update 
+        workout = Workout.find(params[:id]) 
+        if workout.update(workout_params)
             render json: WorkoutSerializer.new(workout), status: :accepted
         else 
             render json: {errors: workout.errors.full_messages}, status: :unprocessible_entity
