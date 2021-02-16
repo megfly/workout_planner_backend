@@ -6,6 +6,9 @@ class Api::V1::WorkoutsController < ApplicationController
         render json: WorkoutSerializer.new(workouts)
     end 
 
+    def show
+    end
+
     def create 
         workout = Workout.new(workout_params)
         if workout.save 
